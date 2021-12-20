@@ -2,7 +2,8 @@ from keras.applications.inception_v3 import InceptionV3
 import os
 from keras.layers import Flatten, Dense, AveragePooling2D
 from keras.models import Model
-from keras.optimizers import RMSprop, SGD
+from tensorflow.keras.optimizers import RMSprop
+from tensorflow.keras.optimizers import SGD
 from keras.callbacks import ModelCheckpoint
 from keras.preprocessing.image import ImageDataGenerator
 
@@ -14,8 +15,8 @@ nbr_validation_samples = 758
 nbr_epochs = 25
 batch_size = 32
 
-train_data_dir = '/Users/pengpai/Desktop/python/DeepLearning/Kaggle/NCFM/data/train_split'
-val_data_dir = '/Users/pengpai/Desktop/python/DeepLearning/Kaggle/NCFM/data/val_split'
+train_data_dir = '/content/Kaggle_NCFM/dataset/train_split'
+val_data_dir = '/content/Kaggle_NCFM/dataset/val_split'
 
 FishNames = ['ALB', 'BET', 'DOL', 'LAG', 'NoF', 'OTHER', 'SHARK', 'YFT']
 
@@ -77,8 +78,8 @@ validation_generator = val_datagen.flow_from_directory(
 
 InceptionV3_model.fit_generator(
         train_generator,
-        samples_per_epoch = nbr_train_samples,
-        nb_epoch = nbr_epochs,
+        steps_per_epoch = nbr_train_samples,
+        epochs = nbr_epochs,
         validation_data = validation_generator,
-        nb_val_samples = nbr_validation_samples,
+        validation_steps = nbr_validation_samples,
         callbacks = [best_model])
