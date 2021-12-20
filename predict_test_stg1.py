@@ -17,7 +17,7 @@ FishNames = ['ALB', 'BET', 'DOL', 'LAG', 'NoF', 'OTHER', 'SHARK', 'YFT']
 
 #root_path = '/Users/pengpai/Desktop/python/DeepLearning/Kaggle/NCFM'
 root_path = '/content/Kaggle_NCFM'
-weights_path = os.path.join(root_path, 'weights.h5')
+weights_path = os.path.join(root_path, '/weights.h5')
 
 #test_data_dir = os.path.join(root_path, '/test_stg1/test_stg1/')
 test_data_dir = '/content/Kaggle_NCFM/dataset/test_stg1'
