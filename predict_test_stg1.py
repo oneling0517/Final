@@ -20,7 +20,7 @@ root_path = '/content/Kaggle_NCFM/'
 weights_path = os.path.join(root_path, 'weights.h5')
 
 #test_data_dir = os.path.join(root_path, '/test_stg1/test_stg1/')
-test_data_dir = '/content/Kaggle_NCFM/dataset/test_stg1'
+test_data_dir = '/content/Kaggle_NCFM/test_stg1'
 
 # test data generator for prediction
 test_datagen = ImageDataGenerator(
