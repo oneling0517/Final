@@ -7,6 +7,7 @@ from tensorflow.keras.optimizers import SGD
 from keras.callbacks import ModelCheckpoint
 from keras.preprocessing.image import ImageDataGenerator
 
+
 learning_rate = 0.0001
 img_width = 299
 img_height = 299
@@ -14,6 +15,10 @@ nbr_train_samples = 3019
 nbr_validation_samples = 758
 nbr_epochs = 25
 batch_size = 32
+
+#steps_per_epoch = len(X_train)//batch_size
+
+#validation_steps = len(X_test)//batch_size
 
 train_data_dir = '/content/Kaggle_NCFM/dataset/train_split'
 val_data_dir = '/content/Kaggle_NCFM/dataset/val_split'
@@ -40,7 +45,7 @@ InceptionV3_model.compile(loss='categorical_crossentropy', optimizer = optimizer
 
 # autosave best Model
 best_model_file = "./weights.h5"
-best_model = ModelCheckpoint(best_model_file, monitor='val_acc', verbose = 1, save_best_only = True)
+best_model = ModelCheckpoint(best_model_file, monitor='val_accuracy', verbose = 1, save_best_only = True)
 
 # this is the augmentation configuration we will use for training
 train_datagen = ImageDataGenerator(
@@ -76,10 +81,10 @@ validation_generator = val_datagen.flow_from_directory(
         classes = FishNames,
         class_mode = 'categorical')
 
-InceptionV3_model.fit_generator(
+InceptionV3_model.fit(
         train_generator,
-        steps_per_epoch = nbr_train_samples,
+        steps_per_epoch = nbr_train_samples//batch_size,
         epochs = nbr_epochs,
         validation_data = validation_generator,
-        validation_steps = nbr_validation_samples,
+        validation_steps = nbr_validation_samples//batch_size,
         callbacks = [best_model])
