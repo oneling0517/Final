@@ -2,6 +2,8 @@ from keras.models import load_model
 import os
 from keras.preprocessing.image import ImageDataGenerator
 import numpy as np
+from random import randint
+
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
@@ -14,10 +16,11 @@ nbr_augmentation = 5
 FishNames = ['ALB', 'BET', 'DOL', 'LAG', 'NoF', 'OTHER', 'SHARK', 'YFT']
 
 #root_path = '/Users/pengpai/Desktop/python/DeepLearning/Kaggle/NCFM'
-root_path = '/data1/home/waynema/popeyepeng/NCFM'
+root_path = '/content/Kaggle_NCFM'
 weights_path = os.path.join(root_path, 'weights.h5')
 
-test_data_dir = os.path.join(root_path, 'data/test_stg1/')
+#test_data_dir = os.path.join(root_path, '/test_stg1/test_stg1/')
+test_data_dir = '/content/Kaggle_NCFM/dataset/test_stg1'
 
 # test data generator for prediction
 test_datagen = ImageDataGenerator(
@@ -34,7 +37,7 @@ InceptionV3_model = load_model(weights_path)
 
 for idx in range(nbr_augmentation):
     print('{}th augmentation for testing ...'.format(idx))
-    random_seed = np.random.random_integers(0, 100000)
+    random_seed = randint(0, 100000 + 1)
 
     test_generator = test_datagen.flow_from_directory(
             test_data_dir,
@@ -49,9 +52,9 @@ for idx in range(nbr_augmentation):
     #print('image_list: {}'.format(test_image_list[:10]))
     print('Begin to predict for testing data ...')
     if idx == 0:
-        predictions = InceptionV3_model.predict_generator(test_generator, nbr_test_samples)
+        predictions = InceptionV3_model.predict(test_generator, nbr_test_samples)
     else:
-        predictions += InceptionV3_model.predict_generator(test_generator, nbr_test_samples)
+        predictions += InceptionV3_model.predict(test_generator, nbr_test_samples)
 
 predictions /= nbr_augmentation
 
