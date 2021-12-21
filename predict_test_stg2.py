@@ -60,13 +60,13 @@ for idx in range(nbr_augmentation):
 predictions /= nbr_augmentation
 
 print('Begin to write submission file ..')
-f_submit = open(os.path.join(root_path, 'submit.csv'), 'w')
+f_submit = open(os.path.join(root_path, 'submit.csv'), 'a')
 f_submit.write('image,ALB,BET,DOL,LAG,NoF,OTHER,SHARK,YFT\n')
 for i, image_name in enumerate(test_image_list):
     pred = ['%.6f' % p for p in predictions[i, :]]
     if i % 100 == 0:
         print('{} / {}'.format(i, nbr_test_samples))
-    f_submit.write('%s,%s\n' % (os.path.basename(image_name), ','.join(pred)))
+    f_submit.write('%s,%s\n' % ('test_stg2/' + os.path.basename(image_name), ','.join(pred)))
 
 f_submit.close()
 
