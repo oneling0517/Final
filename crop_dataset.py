@@ -50,7 +50,7 @@ def crop_image(train_img_dir ,json_name , output_path ):
 if __name__=='__main__':
     output_path = ('output')
     make_output_folder(output_path)
-    train_img_dir = ('/home/bsplab/Documents/yolin/VRDL_Final/the-nature-conservancy-fisheries-monitoring/train/train')
+    train_img_dir = ('/content/Kaggle_NCFM/dataset/train')
 
     crop_image(train_img_dir , 'label_json/ALB.json' , output_path)
     crop_image(train_img_dir , 'label_json/BET.json' , output_path)
