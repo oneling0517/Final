@@ -61,7 +61,7 @@ predictions /= nbr_augmentation
 
 print('Begin to write submission file ..')
 f_submit = open(os.path.join(root_path, 'submit.csv'), 'a')
-f_submit.write('image,ALB,BET,DOL,LAG,NoF,OTHER,SHARK,YFT\n')
+#f_submit.write('image,ALB,BET,DOL,LAG,NoF,OTHER,SHARK,YFT\n')
 for i, image_name in enumerate(test_image_list):
     pred = ['%.6f' % p for p in predictions[i, :]]
     if i % 100 == 0:
