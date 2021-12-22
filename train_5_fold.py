@@ -43,7 +43,7 @@ for k in range(1, n_fold+1):
 
     # autosave best Model
     best_model_file = './weights' + str(k) + '.h5'
-    best_model = ModelCheckpoint(best_model_file, monitor='acc', verbose=1, save_best_only=True)
+    best_model = ModelCheckpoint(best_model_file, monitor='val_accuracy', verbose=1, save_best_only=True)
 
     # this is the augmentation configuration we will use for training
     train_datagen = ImageDataGenerator(
