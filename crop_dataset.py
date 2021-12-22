@@ -52,13 +52,13 @@ if __name__=='__main__':
     make_output_folder(output_path)
     train_img_dir = ('/content/Kaggle_NCFM/dataset/train')
 
-    crop_image(train_img_dir , 'label_json/ALB.json' , output_path)
-    crop_image(train_img_dir , 'label_json/BET.json' , output_path)
-    crop_image(train_img_dir , 'label_json/DOL.json' , output_path)
-    crop_image(train_img_dir , 'label_json/LAG.json' , output_path)
-    crop_image(train_img_dir , 'label_json/OTHER.json' , output_path)
-    crop_image(train_img_dir , 'label_json/SHARK.json' , output_path)
-    crop_image(train_img_dir , 'label_json/YFT.json' , output_path)
+    crop_image(train_img_dir , '/content/Kaggle_NCFM/Final/datasets/ALB.json' , output_path)
+    crop_image(train_img_dir , '/content/Kaggle_NCFM/Final/datasets/BET.json' , output_path)
+    crop_image(train_img_dir , '/content/Kaggle_NCFM/Final/datasets/DOL.json' , output_path)
+    crop_image(train_img_dir , '/content/Kaggle_NCFM/Final/datasets/LAG.json' , output_path)
+    crop_image(train_img_dir , '/content/Kaggle_NCFM/Final/datasets/OTHER.json' , output_path)
+    crop_image(train_img_dir , '/content/Kaggle_NCFM/Final/datasets/SHARK.json' , output_path)
+    crop_image(train_img_dir , '/content/Kaggle_NCFM/Final/datasets/YFT.json' , output_path)
 
     # img_dir = train_img_dir + '/ALB/img_05313.jpg'
     # img = cv2.imread(img_dir)
