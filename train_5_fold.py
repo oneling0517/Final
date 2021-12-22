@@ -2,7 +2,8 @@ from keras.applications.inception_v3 import InceptionV3
 import os
 from keras.layers import Flatten, Dense, AveragePooling2D
 from keras.models import Model
-from keras.optimizers import RMSprop, SGD
+from tensorflow.keras.optimizers import RMSprop
+from tensorflow.keras.optimizers import SGD
 from keras.callbacks import ModelCheckpoint
 from keras.preprocessing.image import ImageDataGenerator
 
@@ -18,8 +19,8 @@ for k in range(1, n_fold+1):
     nbr_validation_samples = 752
     nbr_epochs = 25
     batch_size = 32
-    train_data_dir = r'./data/train_split' + str(k)
-    val_data_dir = r'./data/val_split' + str(k)
+    train_data_dir = '/content/Kaggle_NCFM/dataset/train_split' + str(k)
+    val_data_dir = '/content/Kaggle_NCFM/dataset/val_split' + str(k)
 
     FishNames = ['ALB', 'BET', 'DOL', 'LAG', 'NoF', 'OTHER', 'SHARK', 'YFT']
 
@@ -91,7 +92,7 @@ for k in range(1, n_fold+1):
 
     # 新版本的keras应该这样写：
     print('begin to train {}th model!'.format(k))
-    InceptionV3_model.fit_generator(
+    InceptionV3_model.fit(
             train_generator,
             steps_per_epoch=nbr_train_samples/batch_size,
             # steps_per_epoch=5,
