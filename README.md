@@ -66,9 +66,11 @@ python ensemble.py
 ```
 
 ## Reference
-[1] yolov5: https://github.com/ultralytics/yolov5  
-[2] object detection label dataset1: https://www.kaggle.com/c/the-nature-conservancy-fisheries-monitoring/discussion/25428  
-[3] object detection label dataset2: https://github.com/autoliuweijie/Kaggle/tree/master/NCFM/datasets  
-[4] K-fold Cross-Validation: https://github.com/lidxhaha/Kaggle_NCFM  
-[5] InceptionV3 network : https://github.com/pengpaiSH/Kaggle_NCFM
-[6] https://github.com/gyes00205/NYCU_VRDL_Final.git
+1. yolov5: https://github.com/ultralytics/yolov5  
+2. object detection label dataset1: https://www.kaggle.com/c/the-nature-conservancy-fisheries-monitoring/discussion/25428  
+3. object detection label dataset2: https://github.com/autoliuweijie/Kaggle/tree/master/NCFM/datasets  
+4. K-fold Cross-Validation: https://github.com/lidxhaha/Kaggle_NCFM  
+5. InceptionV3 network : https://github.com/pengpaiSH/Kaggle_NCFM
+6. Contributors : https://github.com/gyes00205/NYCU_VRDL_Final.git
+
+
