@@ -13,7 +13,7 @@ procedure:
 5. Predict the class of testing images
 6. Ensemble models and clip the final results
 
-Crop the training data into many training images by using the (label.json) 
+Crop the training data into many training images by using the (label.json)
 ```
 python crop_dataset.py 
 ```
@@ -23,73 +23,46 @@ python train_crop.py --model=resnet50
 python train_crop.py --model=regnet_x_8gf 
 ```
 Train the objection detection model by training images
-Clone the source of yolov5 
+1. Clone the source of yolov5 
 ```
 git clone https://github.com/ultralytics/yolov5  
 ```
-Install the environment
+2. Install the environment
 ```
 pip install -r requirements.txt    
 ```
-Remember to modify the dir of training images in get_label.py
-5. Detect the boundary box of fishes in testing data and crop into testing images
-6. Predict the class of testing images
-7. Ensemble models and clip the final results
+3. Remember to modify the dir of training images in get_label.py
 
-We need to change our version in order to match the version in [requirements.txt](https://github.com/matterport/Mask_RCNN/blob/master/requirements.txt).
-First uninstall keras.
+4. Execute the (label_mask.py) to obtain the training labels in txt (N txt for N images)
 ```
-pip uninstall keras
+python label_mask.py  
 ```
-Install keras 2.0.8 and tensorflow 1.15.2
+5. Execute the (train.py) to training the model
 ```
-%tensorflow_version 1.x
-pip install keras==2.0.8
-pip install tensorflow-gpu==1.15.2
-```
-I don't know why there is an error sometimes. If there is an error, you can run this again.
-```
-pip install keras==2.0.8
-```
-We also need to install the elder version of h5py
-```
-pip uninstall h5py
-pip install h5py==2.10 -i https://pypi.tuna.tsinghua.edu.cn/simple/
-```
-## Dataset Download
-```
-os.chdir("/content/Mask_RCNN")
-!gdown --id '1nEJ7NTtHcCHNQqUXaoPk55VH3Uwh4QGG' --output dataset.zip
-
-!apt-get install unzi
-!unzip -q 'dataset.zip' -d dataset
+python train.py --img 640 --batch 16 --epochs 3 --data dataset.yaml --weights yolov5s.pt
 ```
 
-## Training
-Use Mask R-CNN resnet101
+## Inference
+You can download [model weight](https://drive.google.com/drive/folders/104ZJATHoQJcIoAiDLS3PKJUOY3oAirGN?usp=sharing) included yolov5, ResNet50 and RegNet. And put the model weights in `model` directory.
+
+Detect the boundary box of fishes in testing data and crop into testing images:
+
 ```
-os.chdir("/content/Mask_RCNN/samples/VRDL_HW3")
-python3 nucleus.py train --dataset=/content/Mask_RCNN/dataset/dataset --subset=train --weights=imagenet
+python detect.py --weights=model/best.pt --source=test_stg1/ --save-crop
+python detect.py --weights=model/best.pt --source=test_stg2/ --save-crop
+```
+          
+Predict the class of testing images:
+
+```
+python inference_crop.py --model=regnet_x_8gf --output=regnet_x_8gf_crop.csv
+python inference_crop.py --model=resnet50 --output=resnet50_epoch10_crop.csv
 ```
 
-## Validation
-```
-os.chdir("/content/Mask_RCNN/samples/VRDL_HW3")
-python3 nucleus.py detect --dataset=/content/Mask_RCNN/dataset/dataset --subset=val --weights=/content/Mask_RCNN/log/mask_rcnn_nucleus_0019.h5
-```
+Ensemble models and clip the final results:
 
-## Testing
-Use the weights from [Google Drive](https://drive.google.com/file/d/1Apj1jhAVYkVR-SDFrIpeDchNBDkPjfMd/view?usp=sharing).
 ```
-os.chdir("/content/Mask_RCNN")
-!gdown --id '1Apj1jhAVYkVR-SDFrIpeDchNBDkPjfMd' --output weights19.zip
-
-!apt-get install unzi
-!unzip -q 'weights19.zip' -d log
-```
-```
-os.chdir("/content/Mask_RCNN/samples/VRDL_HW3")
-python3 nucleus.py detect --dataset=/content/Mask_RCNN/dataset/dataset --subset=test --weights=/content/Mask_RCNN/log/mask_rcnn_nucleus_0019.h5
+python ensemble.py
 ```
 
 ## Inference
@@ -97,5 +70,9 @@ python3 nucleus.py detect --dataset=/content/Mask_RCNN/dataset/dataset --subset=
 You can click [Inference.ipynb](https://colab.research.google.com/drive/13vLcOs_x6R_ALSdEjlYYxuOcER0Xr-gd?usp=sharing).
 
 ## Reference
-https://github.com/matterport/Mask_RCNN/tree/master/samples/nucleus
-https://github.com/cocodataset/cocoapi/blob/master/PythonAPI/pycocotools/mask.py
+[1] yolov5: https://github.com/ultralytics/yolov5  
+[2] object detection label dataset1: https://www.kaggle.com/c/the-nature-conservancy-fisheries-monitoring/discussion/25428  
+[3] object detection label dataset2: https://github.com/autoliuweijie/Kaggle/tree/master/NCFM/datasets  
+[4] K-fold Cross-Validation: https://github.com/lidxhaha/Kaggle_NCFM  
+[5] InceptionV3 network : https://github.com/pengpaiSH/Kaggle_NCFM
+[6] https://github.com/gyes00205/NYCU_VRDL_Final.git
