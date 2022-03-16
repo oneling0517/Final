@@ -65,10 +65,6 @@ Ensemble models and clip the final results:
 python ensemble.py
 ```
 
-## Inference
-
-You can click [Inference.ipynb](https://colab.research.google.com/drive/13vLcOs_x6R_ALSdEjlYYxuOcER0Xr-gd?usp=sharing).
-
 ## Reference
 [1] yolov5: https://github.com/ultralytics/yolov5  
 [2] object detection label dataset1: https://www.kaggle.com/c/the-nature-conservancy-fisheries-monitoring/discussion/25428  
