@@ -1,7 +1,8 @@
 # Final - Kaggle contest
 
 ## Introduction
-Topic : [The Nature Conservancy Fisheries Monitoring](https://www.kaggle.com/c/the-nature-conservancy-fisheries-monitoring)
+Topic : [The Nature Conservancy Fisheries Monitoring](https://www.kaggle.com/c/the-nature-conservancy-fisheries-monitoring).
+
 We Use classification model and objection detection model to finish this task.
 
 ## Training 
