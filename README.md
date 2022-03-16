@@ -6,7 +6,7 @@ We Use classification model and objection detection model to finish this task.
 
 ## Training 
 procedure:
-1. Crop the training data into many training images by using the (label.json)
+1. Crop the training data into many training images by using the json file in datasets folder.
 2. Train the classification model by training images
 3. Train the objection detection model by training images
 4. Detect the boundary box of fishes in testing data and crop into testing images
